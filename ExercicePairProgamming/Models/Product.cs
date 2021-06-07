@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ExercicePairProgamming.Models
 {
-    public class Product
+    public abstract class Product
     {
         public int Id { get; set; }
 
