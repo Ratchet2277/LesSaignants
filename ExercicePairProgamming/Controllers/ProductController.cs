@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ExercicePairProgamming.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -30,16 +31,21 @@ namespace ExercicePairProgamming.Controllers
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Product produc)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                produc = new ProductRepository().AddOneProduct(produc);
+
+                if (produc == null)
+                    TempData["MessageAjout"] = "Erreur";
+                else
+                    TempData["MessageAjout"] = "Le produc est ajouté";
+                return View("CreateProduct");
+
             }
-            catch
-            {
-                return View();
-            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         // GET: ProductController/Edit/5
@@ -51,16 +57,22 @@ namespace ExercicePairProgamming.Controllers
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Product product)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                product = new ProductRepository().EditProduct(product);
+
+                if (product != null)
+                {
+                    ViewBag.Message = "Modification validée";
+                    return View(product);
+                }
+
+                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         // GET: ProductController/Delete/5
@@ -72,16 +84,14 @@ namespace ExercicePairProgamming.Controllers
         // POST: ProductController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Product product)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            product = new ProductRepository().DelOneProduct(id);
+
+            if (product == null)
+                return RedirectToAction("Index", "Home");
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ExercicePairProgamming.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -30,16 +31,21 @@ namespace ExercicePairProgamming.Controllers
         // POST: DessertController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Dessert dessert)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                dessert = new DessertRepository().AddOneBurger(dessert);
+
+                if (dessert == null)
+                    TempData["MessageAjout"] = "Erreur";
+                else
+                    TempData["MessageAjout"] = "Le dessert est ajouté";
+                return View("CreateDessert");
+
             }
-            catch
-            {
-                return View();
-            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         // GET: DessertController/Edit/5
@@ -51,16 +57,22 @@ namespace ExercicePairProgamming.Controllers
         // POST: DessertController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Dessert dessert)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                dessert = new DessertRepository().EditDessert(dessert);
+
+                if (dessert != null)
+                {
+                    ViewBag.Message = "Modification validée";
+                    return View(dessert);
+                }
+
+                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         // GET: DessertController/Delete/5
@@ -72,16 +84,14 @@ namespace ExercicePairProgamming.Controllers
         // POST: DessertController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Dessert dessert)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            dessert = new DessertRepository().DelOneDessert(id);
+
+            if (dessert == null)
+                return RedirectToAction("Index", "Home");
+
+            return RedirectToAction("Index");
         }
     }
 }

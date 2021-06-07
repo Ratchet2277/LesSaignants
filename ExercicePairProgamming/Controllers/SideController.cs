@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ExercicePairProgamming.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -30,16 +31,21 @@ namespace ExercicePairProgamming.Controllers
         // POST: SideController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Side side)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                side = new SideRepository().AddOneSide(side);
+
+                if (side == null)
+                    TempData["MessageAjout"] = "Erreur";
+                else
+                    TempData["MessageAjout"] = "Le side est ajouté";
+                return View("CreateSide");
+
             }
-            catch
-            {
-                return View();
-            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         // GET: SideController/Edit/5
@@ -51,16 +57,22 @@ namespace ExercicePairProgamming.Controllers
         // POST: SideController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Side side)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                side = new SideRepository().EditSide(side);
+
+                if (side != null)
+                {
+                    ViewBag.Message = "Modification validée";
+                    return View(side);
+                }
+
+                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         // GET: SideController/Delete/5
@@ -72,16 +84,14 @@ namespace ExercicePairProgamming.Controllers
         // POST: SideController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Side side)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            side = new SideRepository().DelOneSide(id);
+
+            if (side == null)
+                return RedirectToAction("Index", "Home");
+
+            return RedirectToAction("Index");
         }
     }
 }

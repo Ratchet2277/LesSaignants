@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ExercicePairProgamming.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -30,16 +31,21 @@ namespace ExercicePairProgamming.Controllers
         // POST: BeverageController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Beverage beverage)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                beverage = new BeverageRepository().AddOneBeverage(beverage);
+
+                if (beverage == null)
+                    TempData["MessageAjout"] = "Erreur";
+                else
+                    TempData["MessageAjout"] = "Le beverage est ajouté";
+                return View("CreateBeverage");
+
             }
-            catch
-            {
-                return View();
-            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         // GET: BeverageController/Edit/5
@@ -51,16 +57,22 @@ namespace ExercicePairProgamming.Controllers
         // POST: BeverageController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Beverage beverage)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                beverage = new BeverageRepository().EditBeverage(beverage);
+
+                if (beverage != null)
+                {
+                    ViewBag.Message = "Modification validée";
+                    return View(beverage);
+                }
+
+                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         // GET: BeverageController/Delete/5
@@ -72,16 +84,14 @@ namespace ExercicePairProgamming.Controllers
         // POST: BeverageController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Beverage beverage)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            beverage = new BeverageRepository().DelOneBeverage(id);
+
+            if (beverage == null)
+                return RedirectToAction("Index", "Home");
+
+            return RedirectToAction("Index");
         }
     }
 }
