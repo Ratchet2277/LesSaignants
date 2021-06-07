@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ExercicePairProgamming.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace ExercicePairProgamming.Controllers
             return View();
         }
 
-        // GET: BurgerController/Create
+        // GET: BurgerController/Create 
         public ActionResult Create()
         {
             return View();
@@ -30,16 +31,21 @@ namespace ExercicePairProgamming.Controllers
         // POST: BurgerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Burger burger)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                burger = new BurgerRepository().AddOneBurger(burger);
+
+                if (burger == null)
+                    TempData["MessageAjout"] = "Erreur";
+                else
+                    TempData["MessageAjout"] = "Le burger est ajouté";
+                return View("CreateBurger");
+
             }
-            catch
-            {
-                return View();
-            }
+            else
+                return RedirectToAction("Index", "Home");   
         }
 
         // GET: BurgerController/Edit/5
@@ -51,16 +57,22 @@ namespace ExercicePairProgamming.Controllers
         // POST: BurgerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Burger burger)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                burger = new BurgerRepository().EditBurger(burger);
+
+                if (burger != null)
+                {
+                    ViewBag.Message = "Modification validée";
+                    return View(burger);
+                }
+
+                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            else
+                return RedirectToAction("Index", "Home");
         }
 
         // GET: BurgerController/Delete/5
@@ -72,16 +84,14 @@ namespace ExercicePairProgamming.Controllers
         // POST: BurgerController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Burger burger)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            burger = new BurgerRepository().DelOneBurger(id);
+
+            if (burger == null)
+                return RedirectToAction("Index", "Home");
+
+            return RedirectToAction("Index");
         }
     }
 }
