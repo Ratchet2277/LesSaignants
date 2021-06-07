@@ -4,4 +4,77 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\lib\materialize\css\components\forms\_checkboxes.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\forms\_file-input.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\forms\_forms.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\forms\_input-fields.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\forms\_radio-buttons.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\forms\_range.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\forms\_select.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\forms\_switches.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_badges.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_buttons.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_cards.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_carousel.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_chips.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_collapsible.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_color-classes.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_color-variables.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_datepicker.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_dropdown.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_global.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_grid.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_icons-material-design.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_materialbox.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_modal.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_navbar.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_normalize.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_preloader.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_pulse.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_sidenav.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_slider.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_table_of_contents.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_tabs.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_tapTarget.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_timepicker.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_toast.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_tooltip.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_transitions.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_typography.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_variables.scss" />
+    <None Include="wwwroot\lib\materialize\css\components\_waves.scss" />
+    <None Include="wwwroot\lib\materialize\css\materialize.scss" />
+    <None Include="wwwroot\lib\materialize\js\materialize.js" />
+    <None Include="wwwroot\lib\materialize\js\materialize.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
+    <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\LICENSE" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Menu" />
+  </ItemGroup>
+
 </Project>
