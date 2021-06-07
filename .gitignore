@@ -1,5 +1,7 @@
 ﻿.vs
+.vs/
 .idea
+.idea/
 
-*/obj
-*/obj/*
+obj
+obj/
