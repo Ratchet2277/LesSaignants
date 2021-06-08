@@ -17,17 +17,22 @@ namespace WebApplicationBurger.Repositories
             this.context = context;
         }
 
-        public IQueryable<Burger> GetProducts()
+        public IQueryable<Burger> GetBurger()
         {
             return context.Burgers;
         }
 
-        public void AddProduct(Burger burger)
+        public void AddBurger(Burger burger)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteProduct(Burger burger)
+        public void DeleteBurger(Burger burger)
+        {
+            throw new NotImplementedException();
+        }
+
+        IQueryable<Product> IBurgerRepository.GetBurger()
         {
             throw new NotImplementedException();
         }
