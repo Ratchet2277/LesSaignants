@@ -6,20 +6,26 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplicationBurger.Repositories;
 
 namespace ExercicePairProgamming.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductRepository _productRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IProductRepository repo)
         {
             _logger = logger;
+            _productRepository = repo;
         }
 
         public IActionResult Index()
         {
+            //Recuperation de la liste des produits via le productRepository
+            //BurgerContext context = new BurgerContext();
+            IQueryable<Product> ProductList = _productRepository.GetProducts();
             return View();
         }
 
