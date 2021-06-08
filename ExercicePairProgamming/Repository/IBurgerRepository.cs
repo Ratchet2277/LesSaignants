@@ -8,9 +8,13 @@ using System.Threading.Tasks;
 namespace WebApplicationBurger.Repositories
 {
     public interface IBurgerRepository
-    {
-        public IQueryable<Product> GetBurger();
-        public void AddBurger(Burger burger);
-        public void DeleteBurger(Burger burger);
-    }
+	{
+		public IQueryable<Burger> GetBurgers();
+
+		public Burger CreateBurger(Burger burger);
+
+		public Burger EditBurger(int id, Burger burger);
+
+		public void DeleteBurger(int id);
+	}
 }

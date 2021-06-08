@@ -10,31 +10,36 @@ namespace WebApplicationBurger.Repositories
 {
     public class BurgerRepository : IBurgerRepository
     {
-        private SaignantsContext context;
-
-        public BurgerRepository(SaignantsContext context)
+		private readonly SaignantsContext context;
+		public Burger CreateBurger(Burger burger)
         {
-            this.context = context;
-        }
+			context.Burgers.Add(burger);
+			context.SaveChanges();
+			return burger;
+		}
+
+        public void DeleteBurger(int id)
+        {
+			var beverage = context.Beverages.Find(id);
+			context.Beverages.Remove(beverage);
+		}
+
+        public Burger EditBurger(int id, Burger editburger)
+        {
+			var burger = context.Burgers.Find(id);
+			burger.Name = editburger.Name;
+			burger.Price = editburger.Price;
+			burger.Description = editburger.Description;
+			burger.Weight = editburger.Weight;
+			burger.BeefWeight = editburger.BeefWeight;
+			burger.SaveChanges();
+
+			return context.Burgers.Find(id);
+		}
 
         public IQueryable<Burger> GetBurgers()
         {
-            return context.Burgers;
-        }
-
-        public void AddBurger(Burger burger)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteBurger(Burger burger)
-        {
-            throw new NotImplementedException();
-        }
-
-        IQueryable<Product> IBurgerRepository.GetBurger()
-        {
-            throw new NotImplementedException();
-        }
+			return context.Burgers;
+		}
     }
 }

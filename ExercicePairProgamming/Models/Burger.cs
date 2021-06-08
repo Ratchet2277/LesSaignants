@@ -14,5 +14,10 @@ namespace ExercicePairProgamming.Models
         public int BeefWeight { get; set; }
 
         public virtual ICollection<Menu> Menus { get; set; }
+
+        internal void SaveChanges()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
