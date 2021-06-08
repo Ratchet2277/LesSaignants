@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplicationBurger.Repositories;
 
 namespace ExercicePairProgamming.Controllers
 {
@@ -35,7 +36,7 @@ namespace ExercicePairProgamming.Controllers
         {
             if (ModelState.IsValid)
             {
-                burger = new BurgerRepository().AddOneBurger(burger);
+                burger = new BurgerRepository().AddBurger(burger);
 
                 if (burger == null)
                     TempData["MessageAjout"] = "Erreur";

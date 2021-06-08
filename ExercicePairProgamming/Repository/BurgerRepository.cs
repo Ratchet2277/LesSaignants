@@ -17,7 +17,7 @@ namespace WebApplicationBurger.Repositories
             this.context = context;
         }
 
-        public IQueryable<Burger> GetBurger()
+        public IQueryable<Burger> GetBurgers()
         {
             return context.Burgers;
         }
